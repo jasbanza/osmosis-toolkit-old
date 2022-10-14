@@ -4,30 +4,32 @@ import { Keplr } from "@keplr-wallet/types";
 // connect keplr wallet extension
 
 async function getKeplr(): Promise<Keplr | undefined> {
-    if (window.keplr) {
-        return window.keplr;
-    }
-    
-    if (document.readyState === "complete") {
-        return window.keplr;
-    }
-    
-    return new Promise((resolve) => {
-        const documentStateChange = (event: Event) => {
-            if (
-                event.target &&
-                (event.target as Document).readyState === "complete"
-            ) {
-                resolve(window.keplr);
-                document.removeEventListener("readystatechange", documentStateChange);
-            }
-        };
-        
-        document.addEventListener("readystatechange", documentStateChange);
-    });
+  if (window.keplr) {
+    return window.keplr;
+  }
+
+  if (document.readyState === "complete") {
+    return window.keplr;
+  }
+
+  return new Promise((resolve) => {
+    const documentStateChange = (event: Event) => {
+      if (
+        event.target &&
+        (event.target as Document).readyState === "complete"
+      ) {
+        resolve(window.keplr);
+        document.removeEventListener("readystatechange", documentStateChange);
+      }
+    };
+
+    document.addEventListener("readystatechange", documentStateChange);
+  });
 }
 
-console.log(getKeplr());
+getKeplr().then(() => {
+  console.log(window.keplr);
+});
 
 // get osmosis wallet address from keplr extension
 
@@ -35,5 +37,4 @@ console.log(getKeplr());
 
 // display osmosis balances
 
-
-// 
+//
