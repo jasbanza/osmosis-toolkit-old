@@ -1,0 +1,27 @@
+{
+  "name": "osmosis-toolkit",
+  "version": "1.0.0",
+  "description": "Osmosis dApp for advanced transactions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasbanza/osmosis-toolkit.git"
+  },
+  "keywords": [
+    "Osmosis",
+    "Keplr"
+  ],
+  "author": "jasbanza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasbanza/osmosis-toolkit/issues"
+  },
+  "homepage": "https://github.com/jasbanza/osmosis-toolkit#readme",
+  "devDependencies": {
+    "@keplr-wallet/types": "^0.11.10"
+  }
+}
