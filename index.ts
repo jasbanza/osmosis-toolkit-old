@@ -1,7 +1,6 @@
 import { Keplr } from "@keplr-wallet/types";
 
 // INITIALIZATION:
-// connect keplr wallet extension
 
 async function getKeplr(): Promise<Keplr | undefined> {
   if (window.keplr) {
@@ -27,9 +26,14 @@ async function getKeplr(): Promise<Keplr | undefined> {
   });
 }
 
-getKeplr().then(() => {
-  console.log(window.keplr);
-});
+(async () => {
+  // initialize
+  await getKeplr();
+  // connect keplr wallet extension
+  await window.keplr?.enable("osmosis-1").then((keplr_enable_response) => {
+    console.log(keplr_enable_response);
+  });
+})();
 
 // get osmosis wallet address from keplr extension
 

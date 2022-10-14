@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // INITIALIZATION:
-// connect keplr wallet extension
 function getKeplr() {
     return __awaiter(this, void 0, void 0, function* () {
         if (window.keplr) {
@@ -31,9 +30,15 @@ function getKeplr() {
         });
     });
 }
-getKeplr().then(() => {
-    console.log(window.keplr);
-});
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    // initialize
+    yield getKeplr();
+    // connect keplr wallet extension
+    yield ((_a = window.keplr) === null || _a === void 0 ? void 0 : _a.enable("osmosis-1").then((keplr_enable_response) => {
+        console.log(keplr_enable_response);
+    }));
+}))();
 // get osmosis wallet address from keplr extension
 // get osmosis balances
 // display osmosis balances
