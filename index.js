@@ -31,12 +31,14 @@ function getKeplr() {
     });
 }
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     // initialize
     yield getKeplr();
-    // connect keplr wallet extension
-    yield ((_a = window.keplr) === null || _a === void 0 ? void 0 : _a.enable("osmosis-1").then((keplr_enable_response) => {
-        console.log(keplr_enable_response);
+    // connect Keplr wallet extension
+    yield ((_a = window.keplr) === null || _a === void 0 ? void 0 : _a.enable("osmosis-1"));
+    // get user address from Keplr wallet extension
+    yield ((_b = window.keplr) === null || _b === void 0 ? void 0 : _b.getKey("osmosis-1").then((user_key) => {
+        console.log(user_key);
     }));
 }))();
 // get osmosis wallet address from keplr extension
