@@ -27,7 +27,7 @@ async function getKeplr(): Promise<Keplr | undefined> {
     });
 }
 
-getKeplr();
+console.log(getKeplr());
 
 // get osmosis wallet address from keplr extension
 
