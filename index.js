@@ -31,7 +31,7 @@ function getKeplr() {
         });
     });
 }
-getKeplr();
+console.log(getKeplr());
 // get osmosis wallet address from keplr extension
 // get osmosis balances
 // display osmosis balances
