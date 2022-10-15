@@ -15,14 +15,14 @@ async function connectKeplr(): Promise<void> {
     .catch(() => {
       // Rejected
     });
+}
 
-  // get user address from Keplr wallet extension
+// get osmosis wallet address from keplr extension
+async function getWalletAddress(): Promise<void> {
   await window.keplr?.getKey("osmosis-1").then((user_key) => {
     console.log(user_key);
   });
 }
-
-// get osmosis wallet address from keplr extension
 
 // get osmosis balances
 
