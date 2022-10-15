@@ -23,7 +23,6 @@ body {
   margin: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
-  
 }
 button {
   font: inherit;
@@ -58,8 +57,16 @@ button:disabled {
 }
 
 a {
-  color: #bd26a4 ;
+  color: #bd26a4;
 }
-a:hover{
-    color: #e658cf;
+a:hover {
+  color: #e658cf;
+}
+
+#title img {
+  height: 46px;
+  vertical-align: middle;
+}
+#title img.osmosis {
+  /* margin-right: 10px; */
 }
