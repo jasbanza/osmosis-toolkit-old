@@ -3,6 +3,11 @@ import { Keplr } from "@keplr-wallet/types";
 (async () => {
   // initialize
   await getKeplr();
+  await isKeplrConnected().then((isConnected) => {
+    if (isConnected) {
+      updateUI_setAddressStatus();
+    }
+  });
 })();
 
 async function connectKeplr(): Promise<void> {
@@ -11,17 +16,30 @@ async function connectKeplr(): Promise<void> {
     ?.enable("osmosis-1")
     .then(() => {
       // Connected
+      updateUI_setAddressStatus();
     })
     .catch(() => {
       // Rejected
+      updateUI_setAddressStatus();
     });
 }
 
 // get osmosis wallet address from keplr extension
-async function getWalletAddress(): Promise<void> {
-  await window.keplr?.getKey("osmosis-1").then((user_key) => {
+async function getWalletAddress(): Promise<
+  | {
+      name: string;
+      algo: string;
+      pubKey: Uint8Array;
+      address: Uint8Array;
+      bech32Address: string;
+    }
+  | undefined
+> {
+  const wallet = await window.keplr?.getKey("osmosis-1").then((user_key) => {
     console.log(user_key);
+    return user_key;
   });
+  return wallet;
 }
 
 // get osmosis balances
@@ -61,4 +79,18 @@ async function isKeplrConnected(): Promise<boolean> {
     return res;
   });
   return !!connected;
+}
+
+async function updateUI_setAddressStatus() {
+  await getWalletAddress().then((wallet) => {
+    if (wallet) {
+      document.querySelector(
+        "#wallet-status"
+      )!.innerHTML = `${wallet.bech32Address} - ${wallet.name}`;
+    } else {
+      document.querySelector(
+        "#wallet-status"
+      )!.innerHTML = `WALLET NOT CONNECTED`;
+    }
+  });
 }
