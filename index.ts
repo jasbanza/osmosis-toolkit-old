@@ -3,9 +3,15 @@ import { Keplr } from "@keplr-wallet/types";
 import Long from "long";
 
 // import { WalletManager } from '@cosmos-kit/core';
-import { osmosis } from "osmojs";
-import { PageRequest } from "osmojs/types/codegen/cosmos/base/query/v1beta1/pagination";
+import { osmosis, FEES, getSigningOsmosisClient } from "osmojs";
+// import { PageRequest } from "osmojs/types/codegen/cosmos/base/query/v1beta1/pagination";
 import { Coin } from "osmojs/types/codegen/cosmos/base/v1beta1/coin";
+import { Duration } from "osmojs/types/codegen/google/protobuf/duration";
+import { MsgLockTokens } from "osmojs/types/codegen/osmosis/lockup/tx";
+// import {coin} from ""
+
+const { lockTokens } = osmosis.lockup.MessageComposer.withTypeUrl;
+
 // console.log(chain);
 
 // const wm = new WalletManager("")
@@ -62,10 +68,6 @@ async function getOsmosisWallet(): Promise<
   ui_showElementById("container_unbondedLPs");
   return wallet;
 }
-
-// get osmosis balances
-
-// display osmosis balances
 
 // INITIALIZATION:
 async function getKeplr(): Promise<Keplr | undefined> {
@@ -133,7 +135,7 @@ export function select_gamms_onChange(el: HTMLSelectElement) {
     ui_hideElementById("container_bondingdurations");
   } else {
     const option_selectedGamm = el.options[el.selectedIndex];
-    selectedGamm = {
+    selectedGamm = <Coin>{
       denom: option_selectedGamm?.dataset.denom,
       amount: option_selectedGamm?.dataset.amount,
     };
@@ -141,10 +143,13 @@ export function select_gamms_onChange(el: HTMLSelectElement) {
   }
 }
 
-//dataset.amount
-export function btn_bond_onClick(duration_days: number) {
-  console.log(selectedGamm);
-  console.log(duration_days);
+export async function btn_bond_onClick(duration_days: number) {
+  const gammAmountToBond = ui_gammAmountToBond_getValue();
+  await doBond({
+    gamm: selectedGamm,
+    amount: gammAmountToBond,
+    durationDays: duration_days,
+  });
 }
 
 export function btn_gammAmountMax_onClick() {
@@ -153,7 +158,8 @@ export function btn_gammAmountMax_onClick() {
   );
   if (selectedGamm.amount) {
     const amount = Long.fromString(selectedGamm.amount);
-    input_gammAmountToBond.value = Math.floor(amount.toNumber()).toString();
+    input_gammAmountToBond.value = amount.toString();
+    // input_gammAmountToBond.value = Math.floor(amount.toNumber()).toString();
   }
 }
 
@@ -183,7 +189,7 @@ export async function btnCheckUnbondedGammAmounts(): Promise<void> {
     const response = await client.cosmos.bank.v1beta1.allBalances({
       address: address,
       pagination: {
-        key: new Uint8Array(),
+        key: new Uint8Array(1),
         offset: new (Long as any).fromString("0"),
         limit: new (Long as any).fromString("1000"),
         countTotal: true,
@@ -200,6 +206,66 @@ export async function btnCheckUnbondedGammAmounts(): Promise<void> {
     ui_renderGamms(gamms);
   }
   ui_toggleMask();
+}
+
+async function doBond({
+  gamm,
+  amount,
+  durationDays,
+}: {
+  gamm: { amount: string | undefined; denom: string | undefined };
+  amount: string;
+  durationDays: number;
+}) {
+  if (window.getOfflineSigner) {
+    const offlineSigner = window.getOfflineSigner("osmosis-1");
+    const accounts = await offlineSigner.getAccounts();
+    const walletAddress = await getOsmosisWallet().then((wallet) => {
+      return wallet!.bech32Address;
+    });
+    const client = await getSigningOsmosisClient({
+      rpcEndpoint: "https://rpc.osmosis.interbloc.org",
+      signer: offlineSigner,
+    });
+
+    // const fee = FEES.osmosis.lockTokens('low'); // failing ts build
+    const fee = {
+      amount: [
+        {
+          denom: "uosmo",
+          amount: "0",
+        },
+      ],
+      gas: "450000",
+    };
+
+    // duration workaround as per symphonia guy
+    const msgDuration = 86400 * durationDays * 1_000_000_000;
+    const msg = lockTokens({
+      coins: [
+        {
+          amount: amount,
+          denom: <string>gamm.denom,
+        },
+      ],
+      duration: {
+        // @ts-ignore
+        seconds: Long.fromNumber(Math.floor(msgDuration / 1_000_000_000)),
+        nanos: msgDuration % 1_000_000_000,
+      },
+      owner: walletAddress,
+    });
+
+    ui_toggleMask("Broadcasting Transaction...");
+    try {
+      const result = await client.signAndBroadcast(walletAddress, [msg], fee);
+      ui_updateLastTx(result);
+      
+    } catch (error) {
+      ui_updateLastTx_failed();      
+    }
+    ui_toggleMask();
+  }
 }
 
 // UI FUNCTIONS
@@ -268,6 +334,13 @@ function ui_renderGamms(gamms: Coin[]) {
   ui_showElementById("container_select_gamms");
 }
 
+function ui_gammAmountToBond_getValue(): string {
+  let input_gammAmountToBond = <HTMLInputElement>(
+    document.getElementById("input_gammAmountToBond")
+  );
+  return input_gammAmountToBond.value;
+}
+
 function ui_toggleMask(text: string = "Loading...") {
   document.querySelector("#mask")?.classList.toggle("hidden");
   document.querySelector("#mask div")!.innerHTML = text;
@@ -276,6 +349,10 @@ function ui_toggleMask(text: string = "Loading...") {
 function ui_clearGamms() {
   ui_hideElementById("container_select_gamms");
   document.querySelector("#select_gamms")!.innerHTML = "";
+  const input = <HTMLInputElement>(
+    document.querySelector("#input_gammAmountToBond")
+  );
+  input.value = "";
 }
 
 function ui_showElementById(elId: string) {
@@ -283,4 +360,21 @@ function ui_showElementById(elId: string) {
 }
 function ui_hideElementById(elId: string) {
   document.querySelector(`#${elId}`)?.classList.add("hidden");
+}
+
+function ui_updateLastTx(result: any) {
+  const a = <HTMLAnchorElement>document.querySelector("#lastTxHash a");
+  if (a && a.href) {
+    a.href = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
+    a.innerHTML = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
+    ui_showElementById("lastTxHash");
+  }
+}
+function ui_updateLastTx_failed() {
+  const a = <HTMLAnchorElement>document.querySelector("#lastTxHash a");
+  if (a && a.href) {
+    a.href = "";
+    a.innerHTML = "FAILED... check console log";
+    ui_showElementById("lastTxHash");
+  }
 }

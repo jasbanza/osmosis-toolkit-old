@@ -16,6 +16,8 @@ exports.btnCheckUnbondedGammAmounts = exports.btn_gammAmountHalf_onClick = expor
 const long_1 = __importDefault(require("long"));
 // import { WalletManager } from '@cosmos-kit/core';
 const osmojs_1 = require("osmojs");
+// import {coin} from ""
+const { lockTokens } = osmojs_1.osmosis.lockup.MessageComposer.withTypeUrl;
 // console.log(chain);
 // const wm = new WalletManager("")
 // import { createApp } from "vue";
@@ -59,8 +61,6 @@ function getOsmosisWallet() {
         return wallet;
     });
 }
-// get osmosis balances
-// display osmosis balances
 // INITIALIZATION:
 function getKeplr() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -131,17 +131,23 @@ function select_gamms_onChange(el) {
     }
 }
 exports.select_gamms_onChange = select_gamms_onChange;
-//dataset.amount
 function btn_bond_onClick(duration_days) {
-    console.log(selectedGamm);
-    console.log(duration_days);
+    return __awaiter(this, void 0, void 0, function* () {
+        const gammAmountToBond = ui_gammAmountToBond_getValue();
+        yield doBond({
+            gamm: selectedGamm,
+            amount: gammAmountToBond,
+            durationDays: duration_days,
+        });
+    });
 }
 exports.btn_bond_onClick = btn_bond_onClick;
 function btn_gammAmountMax_onClick() {
     let input_gammAmountToBond = (document.getElementById("input_gammAmountToBond"));
     if (selectedGamm.amount) {
         const amount = long_1.default.fromString(selectedGamm.amount);
-        input_gammAmountToBond.value = Math.floor(amount.toNumber()).toString();
+        input_gammAmountToBond.value = amount.toString();
+        // input_gammAmountToBond.value = Math.floor(amount.toNumber()).toString();
     }
 }
 exports.btn_gammAmountMax_onClick = btn_gammAmountMax_onClick;
@@ -168,7 +174,7 @@ function btnCheckUnbondedGammAmounts() {
             const response = yield client.cosmos.bank.v1beta1.allBalances({
                 address: address,
                 pagination: {
-                    key: new Uint8Array(),
+                    key: new Uint8Array(1),
                     offset: new long_1.default.fromString("0"),
                     limit: new long_1.default.fromString("1000"),
                     countTotal: true,
@@ -188,6 +194,56 @@ function btnCheckUnbondedGammAmounts() {
     });
 }
 exports.btnCheckUnbondedGammAmounts = btnCheckUnbondedGammAmounts;
+function doBond({ gamm, amount, durationDays, }) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (window.getOfflineSigner) {
+            const offlineSigner = window.getOfflineSigner("osmosis-1");
+            const accounts = yield offlineSigner.getAccounts();
+            const walletAddress = yield getOsmosisWallet().then((wallet) => {
+                return wallet.bech32Address;
+            });
+            const client = yield (0, osmojs_1.getSigningOsmosisClient)({
+                rpcEndpoint: "https://rpc.osmosis.interbloc.org",
+                signer: offlineSigner,
+            });
+            // const fee = FEES.osmosis.lockTokens('low'); // failing ts build
+            const fee = {
+                amount: [
+                    {
+                        denom: "uosmo",
+                        amount: "0",
+                    },
+                ],
+                gas: "450000",
+            };
+            // duration workaround as per symphonia guy
+            const msgDuration = 86400 * durationDays * 1000000000;
+            const msg = lockTokens({
+                coins: [
+                    {
+                        amount: amount,
+                        denom: gamm.denom,
+                    },
+                ],
+                duration: {
+                    // @ts-ignore
+                    seconds: long_1.default.fromNumber(Math.floor(msgDuration / 1000000000)),
+                    nanos: msgDuration % 1000000000,
+                },
+                owner: walletAddress,
+            });
+            ui_toggleMask("Broadcasting Transaction...");
+            try {
+                const result = yield client.signAndBroadcast(walletAddress, [msg], fee);
+                ui_updateLastTx(result);
+            }
+            catch (error) {
+                ui_updateLastTx_failed();
+            }
+            ui_toggleMask();
+        }
+    });
+}
 // UI FUNCTIONS
 function ui_setWallet(wallet) {
     ui_resetForm();
@@ -235,6 +291,10 @@ function ui_renderGamms(gamms) {
     ui_hideElementById("msg_gammsEmpty");
     ui_showElementById("container_select_gamms");
 }
+function ui_gammAmountToBond_getValue() {
+    let input_gammAmountToBond = (document.getElementById("input_gammAmountToBond"));
+    return input_gammAmountToBond.value;
+}
 function ui_toggleMask(text = "Loading...") {
     var _a;
     (_a = document.querySelector("#mask")) === null || _a === void 0 ? void 0 : _a.classList.toggle("hidden");
@@ -243,6 +303,8 @@ function ui_toggleMask(text = "Loading...") {
 function ui_clearGamms() {
     ui_hideElementById("container_select_gamms");
     document.querySelector("#select_gamms").innerHTML = "";
+    const input = (document.querySelector("#input_gammAmountToBond"));
+    input.value = "";
 }
 function ui_showElementById(elId) {
     var _a;
@@ -251,4 +313,20 @@ function ui_showElementById(elId) {
 function ui_hideElementById(elId) {
     var _a;
     (_a = document.querySelector(`#${elId}`)) === null || _a === void 0 ? void 0 : _a.classList.add("hidden");
+}
+function ui_updateLastTx(result) {
+    const a = document.querySelector("#lastTxHash a");
+    if (a && a.href) {
+        a.href = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
+        a.innerHTML = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
+        ui_showElementById("lastTxHash");
+    }
+}
+function ui_updateLastTx_failed() {
+    const a = document.querySelector("#lastTxHash a");
+    if (a && a.href) {
+        a.href = "";
+        a.innerHTML = "FAILED... check console log";
+        ui_showElementById("lastTxHash");
+    }
 }

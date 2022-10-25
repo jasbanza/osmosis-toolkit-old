@@ -55,7 +55,7 @@
           <span>3. Choose amount and set a bonding duration</span>
 
           <div class="container">
-            <input id="input_gammAmountToBond" type="number" min="0" /><button onclick="module.btn_gammAmountMax_onClick()">Max</button><button onclick="module.btn_gammAmountHalf_onClick()">Half</button>
+            <input id="input_gammAmountToBond" type="number" min="0" placeholder="Enter GAMM amount"/><button onclick="module.btn_gammAmountMax_onClick()">Max</button><button onclick="module.btn_gammAmountHalf_onClick()">Half</button>
           </div>
 
           <div class="container">
@@ -64,6 +64,11 @@
             <button id="btn_bond_14d" onclick="module.btn_bond_onClick(14)">14 days</button>
           </div>
         </div>
+      </div>
+      
+      <div class="container hidden" id="lastTxHash">
+        Last Transaction:
+        <a href="" target="_blank"></a>
       </div>
     </div>
     <footer>

@@ -1,0 +1,30 @@
+{
+    "account_number": "96105",
+    "chain_id": "osmosis-1",
+    "fee": {
+      "gas": "450000",
+      "amount": [
+        {
+          "denom": "uosmo",
+          "amount": "0"
+        }
+      ]
+    },
+    "memo": "",
+    "msgs": [
+      {
+        "type": "osmosis/lockup/lock-tokens",
+        "value": {
+          "coins": [
+            {
+              "amount": "1000000000000000000",
+              "denom": "gamm/pool/1"
+            }
+          ],
+          "duration": "1209600000000000",
+          "owner": "osmo17mlfltjtmpnysh7lmkmzyp6urcuw74mu25h3dk"
+        }
+      }
+    ],
+    "sequence": "251"
+  }
