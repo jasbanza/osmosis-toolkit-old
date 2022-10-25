@@ -120,8 +120,7 @@ async function keplr_keystore_onChange(e: any): Promise<void> {
 
 export async function btnConnectKeplr_onClick(): Promise<void> {
   // connect Keplr wallet extension
-  keplr_connectOsmosis();
-  // TODO: rename connect button to reconnect button
+  await keplr_connectOsmosis();
 }
 
 let selectedGamm: {
@@ -164,8 +163,11 @@ export function btn_gammAmountHalf_onClick() {
   );
   if (selectedGamm.amount) {
     const amount = Long.fromString(selectedGamm.amount);
-    input_gammAmountToBond.value = Math.floor(amount.div(2).toNumber()).toString();
-  }}
+    input_gammAmountToBond.value = Math.floor(
+      amount.div(2).toNumber()
+    ).toString();
+  }
+}
 
 export async function btnCheckUnbondedGammAmounts(): Promise<void> {
   ui_toggleMask("Loading unbonded LP balances...");
@@ -217,11 +219,15 @@ function ui_setWallet(
     document.querySelector(
       "#wallet-status"
     )!.innerHTML = `${wallet.bech32Address} - ${wallet.name}`;
+    document.getElementById("btnConnectKeplr_text")!.textContent =
+      "Reconnect Keplr Wallet";
     ui_showElementById("container_unbondedLPs");
   } else {
     document.querySelector(
       "#wallet-status"
     )!.innerHTML = `WALLET NOT CONNECTED`;
+    document.getElementById("btnConnectKeplr_text")!.textContent =
+      "Connect Keplr Wallet";
   }
 }
 

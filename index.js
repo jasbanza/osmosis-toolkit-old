@@ -111,8 +111,7 @@ function keplr_keystore_onChange(e) {
 function btnConnectKeplr_onClick() {
     return __awaiter(this, void 0, void 0, function* () {
         // connect Keplr wallet extension
-        keplr_connectOsmosis();
-        // TODO: rename connect button to reconnect button
+        yield keplr_connectOsmosis();
     });
 }
 exports.btnConnectKeplr_onClick = btnConnectKeplr_onClick;
@@ -194,10 +193,14 @@ function ui_setWallet(wallet) {
     ui_resetForm();
     if (wallet) {
         document.querySelector("#wallet-status").innerHTML = `${wallet.bech32Address} - ${wallet.name}`;
+        document.getElementById("btnConnectKeplr_text").textContent =
+            "Reconnect Keplr Wallet";
         ui_showElementById("container_unbondedLPs");
     }
     else {
         document.querySelector("#wallet-status").innerHTML = `WALLET NOT CONNECTED`;
+        document.getElementById("btnConnectKeplr_text").textContent =
+            "Connect Keplr Wallet";
     }
 }
 function ui_resetForm() {
