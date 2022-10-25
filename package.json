@@ -14,7 +14,7 @@
   "homepage": "https://github.com/jasbanza/osmosis-toolkit#readme",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc && ping -n 3 127.0.0.1 >NUL && http-server -p 80 -c-1 || exit 1",
+    "compile": "tsc && ping -n 3 127.0.0.1 >NUL && browserify index.js -o bundle.js -s module && http-server -p 80 -c-1 || exit 1",
     "dev": "nodemon -e \"ts html css\" --exec \"npm run compile\""
   },
   "repository": {
@@ -23,10 +23,13 @@
   },
   "devDependencies": {
     "@keplr-wallet/types": "^0.11.10",
+    "browserify": "^17.0.0",
     "http-server": "^14.1.1",
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "@chain-registry/osmosis": "^1.2.0",
+    "@cosmos-kit/core": "^0.19.9",
     "osmojs": "^0.33.0"
   }
 }
