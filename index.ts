@@ -62,7 +62,7 @@ async function getOsmosisWallet(): Promise<
 > {
   ui_resetForm();
   const wallet = await window.keplr?.getKey("osmosis-1").then((user_key) => {
-    console.log(user_key);
+    // console.log(user_key);
     return user_key;
   });
   ui_showElementById("container_unbondedLPs");
@@ -260,9 +260,9 @@ async function doBond({
     try {
       const result = await client.signAndBroadcast(walletAddress, [msg], fee);
       ui_updateLastTx(result);
-      
-    } catch (error) {
-      ui_updateLastTx_failed();      
+    } catch (error: any) {
+      console.log(<Error>error.message);
+      ui_updateLastTx_failed();
     }
     ui_toggleMask();
   }
@@ -366,7 +366,8 @@ function ui_updateLastTx(result: any) {
   const a = <HTMLAnchorElement>document.querySelector("#lastTxHash a");
   if (a && a.href) {
     a.href = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
-    a.innerHTML = "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
+    a.innerHTML =
+      "https://www.mintscan.io/osmosis/txs/" + result.transactionHash;
     ui_showElementById("lastTxHash");
   }
 }
