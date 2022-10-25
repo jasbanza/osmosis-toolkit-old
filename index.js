@@ -54,7 +54,7 @@ function getOsmosisWallet() {
     return __awaiter(this, void 0, void 0, function* () {
         ui_resetForm();
         const wallet = yield ((_a = window.keplr) === null || _a === void 0 ? void 0 : _a.getKey("osmosis-1").then((user_key) => {
-            console.log(user_key);
+            // console.log(user_key);
             return user_key;
         }));
         ui_showElementById("container_unbondedLPs");
@@ -238,6 +238,7 @@ function doBond({ gamm, amount, durationDays, }) {
                 ui_updateLastTx(result);
             }
             catch (error) {
+                console.log(error.message);
                 ui_updateLastTx_failed();
             }
             ui_toggleMask();
