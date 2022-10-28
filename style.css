@@ -31,7 +31,7 @@ body {
 .container.card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
-  max-width: 650px;
+  width: 650px;
 }
 
 button {
@@ -184,4 +184,9 @@ option {
 
 #errorMsg {
   background-color: #c32424;
+}
+
+.center {
+  width: 700px;
+  margin: auto;
 }
