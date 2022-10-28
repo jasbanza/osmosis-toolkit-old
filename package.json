@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@keplr-wallet/types": "^0.11.10",
+    "@types/big.js": "^6.1.6",
     "browserify": "^17.0.0",
     "http-server": "^14.1.1",
     "nodemon": "^2.0.20"
@@ -30,6 +31,7 @@
   "dependencies": {
     "@chain-registry/osmosis": "^1.2.0",
     "@cosmos-kit/core": "^0.19.9",
+    "big.js": "^6.2.1",
     "osmojs": "^0.33.0"
   }
 }

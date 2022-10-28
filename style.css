@@ -16,6 +16,12 @@ body {
   color: var(--color);
 }
 
+.subtitle {
+  font-style: italic;
+  color: #bd26a4;
+  margin-top: 5px;
+}
+
 .container {
   background-color: #3c356d;
   text-align: center;
@@ -32,12 +38,12 @@ button {
   border: 1px solid #322dc2;
   background-color: #322dc2;
   color: var(--color);
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   border-radius: 12px;
-  margin: 1rem;
+  margin: 0.5rem;
   /* width: 12rem; */
   cursor: pointer;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+  box-shadow: 1px 1px 4px rgb(0 0 0 / 26%);
 }
 button.lite {
   padding: 2px;
@@ -50,7 +56,8 @@ button:focus {
 }
 
 button:hover,
-button:active {
+button:active,
+button.active {
   background-color: #4540d8;
   border-color: #4540d8;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
@@ -62,6 +69,10 @@ button:disabled {
   box-shadow: none;
   color: #3f3f3f;
   cursor: not-allowed;
+}
+
+button img {
+  width: 50px;
 }
 
 a {
@@ -122,7 +133,11 @@ input {
   text-align: center;
   border-radius: 12px;
   font: inherit;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
+}
+
+#input_gammAmount {
+  width: 250px;
 }
 
 select {
@@ -134,7 +149,7 @@ select {
   border: 1px solid #322dc2;
   background-color: #322dc2;
   color: var(--color);
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
 }
@@ -147,19 +162,25 @@ option {
 #btn_bond_1d {
   background-color: hsl(295, 73%, 22%);
 }
-#btn_bond_1d:hover, #btn_bond_1d:focus {
+#btn_bond_1d:hover,
+#btn_bond_1d:focus {
   background-color: hsl(295, 73%, 24%);
 }
 #btn_bond_7d {
   background-color: hsl(295, 73%, 30%);
 }
-#btn_bond_7d:hover, #btn_bond_7d:focus {
+#btn_bond_7d:hover,
+#btn_bond_7d:focus {
   background-color: hsl(295, 73%, 32%);
 }
 #btn_bond_14d {
   background-color: hsl(295, 73%, 36%);
 }
-#btn_bond_14d:hover, #btn_bond_14d:focus {
+#btn_bond_14d:hover,
+#btn_bond_14d:focus {
   background-color: hsl(295, 73%, 38%);
 }
 
+#errorMsg {
+  background-color: #c32424;
+}
