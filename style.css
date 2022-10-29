@@ -1,3 +1,5 @@
+@import "style-swap.css";
+
 :root {
   --color: #f0f0f0;
 }
@@ -40,12 +42,13 @@ button {
   background-color: #322dc2;
   color: var(--color);
   padding: 0.5rem 1rem;
-  border-radius: 12px;
+  border-radius: 1rem;
   margin: 0.5rem;
   /* width: 12rem; */
   cursor: pointer;
   box-shadow: 1px 1px 4px rgb(0 0 0 / 26%);
 }
+
 button.lite {
   padding: 2px;
   width: auto;

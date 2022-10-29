@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Osmosis Toolkit | Swap by @jasbanza</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Font Awesome Icon Library -->
+    <script src="https://kit.fontawesome.com/49bf19f9cd.js" crossorigin="anonymous"></script>
+    <!-- vue.js stuff for later -->
+    <!-- <script src="https://unpkg.com/vue@next" defer></script> -->
+    <!-- <script src="app.js" defer></script> -->
+    <script src="bundle.js"></script>
+    <!-- index.js bundled with browserify -->
+  </head>
+  <body>
+    <div id="mask" class="hidden">
+      <div>loading...</div>
+    </div>
+    <div class="center">
+      <div class="container card" id="title">
+        <img
+          class="osmosis"
+          src="src/images/osmosis-logo-main.svg"
+          alt="OSMOSIS"
+        /><img class="toolkit" src="src/images/toolkit.png" alt="Toolkit" />
+        <div class="subtitle">
+          Swap Widget. Ledger supported.
+        </div>
+      </div>
+      <div class="container card">
+        <h3 id="wallet-status">WALLET NOT CONNECTED</h3>
+        <button onclick="module.btnConnectKeplr_onClick()">
+          <img src="./src/images/keplr_square.webp" />
+          <div id="btnConnectKeplr_text">Connect</div>
+        </button>
+      </div>
+
+      <!-- Swap Card -->
+      <div class="container card" id="form_swap">
+        <div class="container assetCards" id="container_select_assets">
+          <div class="assetCard">
+            <div class="container amountButtons">
+              <button class="left">
+                1/4
+              </button>
+              <button class="amounts">
+                1/2
+              </button>
+              <button class="amounts">
+                1/3
+              </button>
+              <button class="amounts">
+                3/4
+              </button>
+              <button class="right">
+                MAX
+              </button>
+            </div>
+            <span class="availBalance">Available Balance: </span>
+            <img class="tokenImage top" src="https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg" />
+            <select class="asset top">
+              <option>OSMO</option></select>
+              <span class="assetHome">Osmosis</span>
+            <input
+            id="input_tokenAmount"
+            type="number"
+            min="0"
+            placeholder="0.000000"
+            oninput=""
+          />
+          </div>
+          <i class="fa-solid fa-rotate fa-3x"></i>
+            <div class="assetCard">
+              <img class="tokenImage bottom" src="https://raw.githubusercontent.com/cosmos/chain-registry/master/jackal/images/jkl.svg" />
+              <select class="asset bottom">
+                <option>JKL</option></select>
+                <span class="assetHome bottom">Jackal</span>
+              <input
+              id="input_tokenAmountOut"
+              type="number"
+              min="0"
+              placeholder="0.000000"
+              oninput=""
+            />
+            </div>
+            <div class="tabberInfoWrap">
+              <button class="tabberCardBasic">Basic Info</button>
+                <button class="tabberCardAdvanced">Advanced Info</button><br/>
+                <div>
+                  <table id="basic">
+                    <tr>
+                      <td class="number">0.00</td>
+                      <td>OSMO</td>
+                      <td>≈</td>
+                      <td class="number">0.00</td>
+                      <td>JKL</td>
+                    </tr>
+                    <tr class="output">
+                      <td>Price Impact</td>
+                      <td></td>
+                      <td>~</td>
+                      <td class="number">0.01</td>
+                      <td>%</td>
+                    </tr>
+                    <tr>
+                      <td>Expected Output</td>
+                      <td></td>
+                      <td>~</td>
+                      <td class="number">0.000000000000000000</td>
+                      <td>JKL</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            <button>SWAP</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container card hidden" id="errorMsg"></div>
+
+      <div class="container card hidden" id="lastTxHash">
+        Last Transaction:
+        <a href="" target="_blank"></a>
+      </div>
+      <footer>
+        <div class="container card">
+          Made with 💟 by
+          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a>. UI design made with 🧙 by 
+          <a href="https://twitter.com/OzMagick" target="_blank">OzMage Validation</a>.
+          <br /><br />
+          If this helps you,
+          <a
+            href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
+            target="_blank"
+            >you will love this</a
+          >
+          ⭐
+          <a target="_blank" href="https://app.starname.me/profile/jason"
+            >consider donating!</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
