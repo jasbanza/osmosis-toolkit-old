@@ -1,4 +1,8 @@
 node_modules
 package-lock.json
-bundle.js.tmp-browserify*
+*tmp-browserify*
 /.idea/
+/notes/
+src/*.js
+/tsc-output/
+/preview/
