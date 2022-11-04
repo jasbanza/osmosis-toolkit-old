@@ -510,7 +510,7 @@ function ui_gammAmount_getValue(): string {
 
 function ui_toggleMask(text: string = "Loading...") {
   document.querySelector("#mask")?.classList.toggle("hidden");
-  document.querySelector("#mask div")!.innerHTML = text;
+  document.querySelector("#mask span")!.innerHTML = text;
 }
 
 function ui_clearGamms() {

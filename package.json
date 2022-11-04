@@ -15,7 +15,7 @@
   "main": "",
   "scripts": {
     "build-compile-ts-bundle-js": "npm run build-rm-tsc-output & tsc || build-rm-tsc-output & ping -n 2 127.0.0.1 >NUL && npm run build-bundle-js && npm run build-rm-tsc-output",
-    "build-bundle-js": "browserify tsc-output/bond.js -o dist/bond.bundle.js -s module && browserify tsc-output/swap.js -o dist/swap.bundle.js -s module && browserify tsc-output/pool.js -o dist/pool.bundle.js -s module",
+    "build-bundle-js": "browserify tsc-output/bond.js -o dist/bond.bundle.js -s module && browserify tsc-output/swap.js -o dist/swap.bundle.js -s module && browserify tsc-output/pool.js -o dist/pool.bundle.js -s module && browserify tsc-output/toolkit.js -o dist/toolkit.bundle.js -s module",
     "build-css": "xcopy /E /Y \".\\src\\styles\\\" \".\\dist\\styles\\\" ",
     "build-html": "xcopy /E /Y \".\\src\\*.html\" \".\\dist\\\" ",
     "build-images": "xcopy /E /Y \".\\src\\images\\\" \".\\dist\\images\\\" && xcopy /E /Y \".\\src\\favicon.ico\" \".\\dist\\\"",
@@ -24,7 +24,7 @@
     "build-github-pages": "xcopy /E /Y \".\\dist\\\" \".\\docs\\\"",
     "build-rm-github-pages": "rmdir /s /q docs",
     "dev-compile-ts-bundle-js": "npm run build-rm-tsc-output & tsc || build-rm-tsc-output & ping -n 2 127.0.0.1 >NUL && npm run dev-bundle-js && npm run build-rm-tsc-output",
-    "dev-bundle-js": "browserify tsc-output/bond.js -o preview/bond.bundle.js -s module && browserify tsc-output/swap.js -o preview/swap.bundle.js -s module && browserify tsc-output/pool.js -o preview/pool.bundle.js -s module",
+    "dev-bundle-js": "browserify tsc-output/bond.js -o preview/bond.bundle.js -s module && browserify tsc-output/swap.js -o preview/swap.bundle.js -s module && browserify tsc-output/pool.js -o preview/pool.bundle.js -s module && browserify tsc-output/toolkit.js -o preview/toolkit.bundle.js -s module",
     "dev-css": "xcopy /E /Y \".\\src\\styles\\\" \".\\preview\\styles\\\" ",
     "dev-html": "xcopy /E /Y \".\\src\\*.html\" \".\\preview\\\" ",
     "dev-images": "xcopy /E /Y \".\\src\\images\\\" \".\\preview\\images\\\" && xcopy /E /Y \".\\src\\favicon.ico\" \".\\preview\\\"",
