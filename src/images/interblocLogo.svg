@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1000"
+   height="900"
+   viewBox="0 0 264.58333 238.125"
+   version="1.1"
+   id="svg983"
+   inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
+   sodipodi:docname="interbloc logo only.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview985"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="0.64052329"
+     inkscape:cx="583.11697"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1848"
+     inkscape:window-height="1136"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs980" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1777"
+       transform="matrix(0.39762016,0,0,0.39762016,84.70379,-40.482837)">
+      <path
+         fill="#9485fe"
+         d="M 81.931,442.062 H 29.534 v 18.846 c 0,18.737 15.188,33.924 33.924,33.924 h 18.474 52.956 v -52.77 z"
+         id="path1765" />
+      <path
+         fill="#1afbff"
+         d="M 154.477,336.803 H 81.931 v 53.748 h 52.956 53.514 v -1.508 -18.317 c 0,-18.735 -15.189,-33.923 -33.924,-33.923 z"
+         id="path1767" />
+      <rect
+         x="134.88699"
+         y="390.54999"
+         fill="#2cd7ff"
+         width="53.514"
+         height="51.512001"
+         id="rect1769" />
+      <rect
+         x="29.534"
+         y="282.35901"
+         fill="#4ff0d7"
+         width="52.676998"
+         height="108.191"
+         id="rect1771" />
+      <rect
+         x="169.41499"
+         y="466.81799"
+         fill="#687eff"
+         width="52.675999"
+         height="53.422001"
+         id="rect1773" />
+      <rect
+         x="29.534"
+         y="390.54999"
+         fill="#1a70fe"
+         width="52.676998"
+         height="51.512001"
+         id="rect1775" />
+    </g>
+  </g>
+</svg>

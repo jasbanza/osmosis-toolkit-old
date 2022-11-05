@@ -443,8 +443,8 @@ function ui_setWallet(
   if (wallet) {
     document.querySelector(
       "#wallet-status"
-    )!.innerHTML = `${wallet.bech32Address} - ${wallet.name}`;
-    document.getElementById("btnConnectKeplr_text")!.textContent = "Reconnect";
+    )!.innerHTML = `${wallet.bech32Address}`;
+    document.getElementById("btnConnectKeplr_text")!.textContent =  `${wallet.name}`;
     ui_showElementById("form_gamms");
   } else {
     document.querySelector(

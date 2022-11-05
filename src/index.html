@@ -5,147 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Osmosis Toolkit by @jasbanza</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter&family=Poppins"
+    rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- vue.js stuff for later -->
     <!-- <script src="https://unpkg.com/vue@next" defer></script> -->
     <!-- <script src="app.js" defer></script> -->
     <script src="bond.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/49bf19f9cd.js" crossorigin="anonymous"></script>
     <!-- index.js bundled with browserify -->
   </head>
   <body>
     <div id="mask" class="hidden">
       <div>
-        <i class="fa-solid fa-atom"></i>
-        <br />
-        <span>loading...</span>
-      </div>
+        <i class="fa-solid fa-atom"></i><br/><span>Loading...</span></div>
     </div>
     <div class="center">
-      <div class="container card" id="title">
-        <img
-          class="osmosis"
-          src="images/osmosis-logo-main.svg"
-          alt="OSMOSIS"
-        /><img class="toolkit" src="images/toolkit.png" alt="Toolkit" />
+      <div class="container card" id="heading">
+        <i class="fak fa-osmo"></i><span class="title">Osmosis Toolkit | </span><span class="title" id="pageTitle">Home</span>
         <div class="subtitle">
-          Pool bonding & dust removal. Ledger supported
+          a simple, lightweight client for everyday interactions with the osmosis blockchain.<br/>
+          <button class="keplr" onclick="module.btnConnectKeplr_onClick()">
+            <img src="./images/keplr_square.webp" />
+            <div id="btnConnectKeplr_text">Connect</div>
+          </button>
         </div>
+        <span><B>Address:</B> </span><span id="wallet-status">WALLET NOT CONNECTED</span>
       </div>
-      <div class="container card">
-        <h3 id="wallet-status">WALLET NOT CONNECTED</h3>
-        <button onclick="module.btnConnectKeplr_onClick()">
-          <img src="./images/keplr_square.webp" />
-          <div id="btnConnectKeplr_text">Connect</div>
-        </button>
+      <div class="">
+        <ul class="nav">
+          <button class="nav"><a href="/"><li><i class="fa-sharp fa-solid fa-house"></i>Home</li></a></button>
+          <button class="nav"><a href="swap.html"><li><i class="fa-sharp fa-solid fa-retweet"></i>Swap</li></a></button>
+          <button class="nav"><a href="pool.html"><li><i class="fa-sharp fa-solid fa-scale-balanced"></i>Pool</li></a></button>
+          <button disabled class="nav"><i class="fa-sharp fa-solid fa-book-open-cover"></i><li>Docs</li></button>
+        </ul>
       </div>
 
       <!-- GAMM FORM -->
-      <div class="container card hidden" id="form_gamms">
-        <button onclick="module.listLPs_onclick()">
-          🔃 List Available Pools
-        </button>
-        <div class="container hidden" id="container_select_gamms">
-          <span id="msg_gammsEmpty" class="hidden">No available pools</span>
-          <select
-            id="select_gamms"
-            onchange="module.select_gamms_onChange(this)"
-          ></select>
-
-          <div class="container hidden" id="gammActions">
-            <div>
-              <input
-                id="input_gammAmount"
-                type="number"
-                min="0"
-                placeholder="Enter GAMM amount"
-                oninput="module.input_gammAmount_onInput()"
-              />
-              <button onclick="module.btn_gammAmountMax_onClick()">Max</button>
-              <button onclick="module.btn_gammAmountHalf_onClick()">
-                Half
-              </button>
-              <input
-                id="input_gammPercent"
-                type="number"
-                min="0"
-                max="100"
-                placeholder="?"
-                oninput="module.input_gammAmountPercent_onInput()"
-                style="padding: 8px 2px; width: 55px; margin-left: 8px"
-              />
-              <span style="font-size: 14pt">%</span>
-            </div>
-            <div class="container hidden" id="container_gammOptions">
-              <div>
-                <button
-                  onclick="module.tabButton_onClick(this,'container_exitPool')"
-                >
-                  📤 Remove Liquidity
-                </button>
-                <button
-                  onclick="module.tabButton_onClick(this,'container_bondPool')"
-                >
-                  🔒 Bond Liquidity
-                </button>
-              </div>
-              <!-- REMOVE LP -->
-              <div class="container hidden tab" id="container_exitPool">
-                <div>
-                  <button id="btn_remove" onclick="module.btn_remove_onClick()">
-                    Remove
-                  </button>
-                </div>
-              </div>
-              <!-- BOND LP -->
-              <div class="container hidden tab" id="container_bondPool">
-                <div>
-                  Bond:
-                  <button id="btn_bond_1d" onclick="module.btn_bond_onClick(1)">
-                    1 day
-                  </button>
-                  <button id="btn_bond_7d" onclick="module.btn_bond_onClick(7)">
-                    7 days
-                  </button>
-                  <button
-                    id="btn_bond_14d"
-                    onclick="module.btn_bond_onClick(14)"
-                  >
-                    14 days
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container card hidden" id="errorMsg"></div>
-
-      <div class="container card hidden" id="lastTxHash">
-        Last Transaction:
-        <a href="" target="_blank"></a>
+      <div class="container card">
+        
       </div>
       <footer>
         <div class="container card">
-          Made with 💟 by
-          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a>
+          <div class="footer">
+          Made with <i class="fa-sharp fa-solid fa-heart"></i> by
+          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a><br/>
+          UI design made with <i class="fa-duotone fa-sparkles"></i> by <a href="https://twitter.com/OzMagick" target="_blank">🧙 OzMage 🦉</a><br/>
+          APR data by 
+          <a href="https://www.dexmos.app/" target="_blank"><img alt="Dexmos" src="images/dexmosWhite.png" style="width: 125px; position: relative; top: 12px;"/></a><br/><br/>
+          Hosting and Dedicated RPC endpoints by <a href="https://interbloc.org/" target="_blank"><img alt="Interbloc" src="images/interblocHorizontalWhite.png" style="width: 100px; position: relative; top: 5px;"/></a>
           <br /><br />
+          Need help or support?<br/><a href="https://support.osmosis.zone/" target="_blank"><img alt="Interbloc" src="images/oslBanner_new.svg" style="width: 250px; margin: 0.5rem;"/></a><br />
           If this helps you,
           <a
             href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
             target="_blank"
             >you will love this</a
           >
-          ⭐
+          <i class="fa-duotone fa-starship"></i>
           <a target="_blank" href="https://app.starname.me/profile/jason"
             >consider donating!</a
           >
+        </div>
         </div>
       </footer>
     </div>
