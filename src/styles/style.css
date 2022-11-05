@@ -1,120 +1,180 @@
-@import "./style-swap.css";
-
+/* Root Variable Guide */
 :root {
-  --color: #f0f0f0;
+  /* Default Colors as HEX Code */
+  --colorNotSoWhite: #f0f0f0;
+  --colorJasonBlu: #3c356d;
+  --colorOsmoWosmo: #462DAF;
+  --colorOsmoIon: #2994D0;
+  --colorOsmoAmmelia: #CA2EBD;
+  --colorOsmoBullish: #29D0B2;
+  --colorOsmoBearish: #C6451C;
+  --colorOsmoVerse: #140F34;
+  /* Default Font-Families */
+  --fontNumbers: 'IBM Plex Mono', monospace;
+  --fontText: 'Inter', sans-serif;
+  --fontHeadings: 'Poppins', sans-serif;
 }
 
+/* Spinner Animation */
+@keyframes spinner {
+  0%   {color: var(--colorNotSoWhite); transform: rotate(0.0turn); right: 25vw;}
+  25% {color: var(--colorOsmoAmmelia); transform: rotate(0.25turn); right: 10vw;}
+  50% {color: var(--colorOsmoBullish); transform: rotate(0.5turn); right: 0vw;}
+  75% {color: var(--colorOsmoBullish); transform: rotate(0.75turn); right: -10vw;}
+  100% {color: var(--colorOsmoAmmelia); transform: rotate(1.0turn); right: -25vw;}
+}
+
+/* Mask Animation */
+@keyframes mask {
+  0%   {background-color: rgba(20, 15, 52, 0.0);}
+  25% {background-color: rgba(20, 15, 52, 0.50);}
+  50% {background-color: rgba(0, 0, 0, 0.75);}
+  75% {background-color: rgba(20, 15, 52, 0.50);}
+  100% {background-color: rgba(20, 15, 52, 0.0);}
+}
+
+/* Border Boxing it up */
 * {
   box-sizing: border-box;
 }
 
-html {
-  font-family: "Roboto", sans-serif;
+/* Hiding elements with a quick */
+.hidden {
+  display: none;
 }
 
+/* Setting a Default Font, size, weight, and color
+    TODO: Make reactive to screen size */
+html {
+  font-family: var(--fontText);
+  font-weight: 400;
+  font-size: 1.0rem;
+  color: var(--colorNotSoWhite);
+}
+
+/* Setting the default bg color */
 body {
   margin: 0;
-  background-color: #231d4b;
-  color: var(--color);
+  background-color: var(--colorOsmoVerse);
 }
 
-.subtitle {
-  font-style: italic;
-  color: #bd26a4;
-  margin-top: 5px;
-}
-
+/* Basic Containers for Elements */
 .container {
-  background-color: #3c356d;
+  background-color: var(--colorJasonBlu);
   text-align: center;
-  padding: 0.5rem;
-  margin: 1rem;
+  padding: 0.85rem;
+  margin: 1.0rem;
 }
+/* TODO: Make reactive to screen size */
 .container.card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 1px 2px 1px rgba(2, 2, 2, 0.8);
   border-radius: 12px;
   width: 650px;
 }
 
+/* All the Buttons */
 button {
-  font: inherit;
-  border: 1px solid #322dc2;
-  background-color: #322dc2;
-  color: var(--color);
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  font: var(--fontHeadings);
+  border-color: var(--colorJasonBlu);
+  border-width: 1px;
+  border-style: solid;
+  background-color: var(--colorOsmoWosmo);
+  color: var(--colorNotSoWhite);
+  padding: 0.25rem 1.5rem;
+  border-radius: 1.0rem;
   margin: 0.5rem;
   /* width: 12rem; */
   cursor: pointer;
-  box-shadow: 1px 1px 4px rgb(0 0 0 / 26%);
+  box-shadow: rgba(0, 0, 0, 0.26) -5px 5px 10px;
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
 }
-
-button.lite {
-  padding: 2px;
-  width: auto;
-  margin: 2px;
+button.keplr {
+  display: inline-flex;
+  max-width: 200px;
+  align-items: center;
+  font-variant-caps: normal;
 }
-
+button.keplr > img {
+  width: 25px;
+  margin-right: 0.25rem;
+}
 button:focus {
   outline: none;
 }
-
 button:hover,
 button:active,
 button.active {
-  background-color: #4540d8;
-  border-color: #4540d8;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
+  background-color: var(--colorOsmoIon);
+  border-color: var(--colorOsmoWosmo);
+  border-radius: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.26) 5px -5px 10px;
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
 }
 
-button:disabled {
-  background-color: #ccc;
-  border-color: #ccc;
-  box-shadow: none;
-  color: #3f3f3f;
-  cursor: not-allowed;
+/* Text Elements */
+.subtitle {
+  font-style: italic;
+  font-variant-caps: unicase;
+  font-family: var(--fontHeadings);
+  color: var(--colorOsmoAmmelia);
+  margin-top: 1.0rem;
+  line-height: 1.5rem;
 }
-
-button img {
-  width: 50px;
+.title {
+  font-family: var(--fontHeadings);
+  font-size: 1.85rem;
 }
-
+#pageTitle {
+  font-weight: 900;
+  margin-right: 4.0rem;
+  color: var(--colorOsmoIon);
+}
 a {
-  color: #bd26a4;
+  color: var(--colorOsmoAmmelia);
+  text-decoration-line: none;
 }
 a:hover {
   color: #e658cf;
+  text-decoration-style: double;
+  text-decoration-line: underline;
+  transition-property: color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
 }
 
-#title img {
-  height: 46px;
-  vertical-align: middle;
-}
-
+/* Loading Mask */
 #mask {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
   z-index: 10;
+  animation-name: mask;
+  animation-duration: 3.0s;
+  animation-iteration-count: infinite;
 }
-
+/* Box for content */
 #mask div {
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 325px;
   transform: translate(-50%, 0);
   z-index: 100;
-  border-radius: 12px;
+  border-radius: 2.5rem;
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 10px 20px;
+  padding: 1.0rem;
   margin: 0;
   overflow: hidden;
-  background-color: rgb(104, 76, 168);
-  font-size: 20pt;
+  background-color: var(--colorOsmoWosmo);
+  font-weight: 400;
+  font-size: 1.25rem;
   text-align: center;
 }
 
@@ -124,10 +184,7 @@ a:hover {
   margin: 0;
 }
 
-.hidden {
-  display: none;
-}
-
+/* Basic form elements */
 input {
   padding: 8px;
   font-size: 14pt;
@@ -141,6 +198,46 @@ input {
   width: 250px;
 }
 
+/* UL Navigation Related*/
+ul.nav {
+  list-style-type: none;
+  display: grid;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: -0.5rem;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+}
+button.nav {
+  display: inline;
+  font-size: 0.95rem;
+  margin: -1.5rem 1.5rem;
+  width: 120px;
+  transition-property: all;
+  transition-duration: 0.30s;
+  transition-timing-function: ease-in-out;
+}
+button.nav:hover {
+  transform: rotate(-0.03turn);
+  transition-property: all;
+  transition-duration: 0.30s;
+  transition-timing-function: ease-in-out;
+}
+button.nav:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #3f3f3f;
+  cursor: not-allowed;
+}
+button.nav:disabled:hover {
+  border-radius: 1.0rem;
+}
+button.nav > a {
+  color: var(--colorNotSoWhite);
+  text-decoration-line: none;
+}
+
 select {
   padding: 8px;
   font-size: 14pt;
@@ -149,7 +246,7 @@ select {
   font: inherit;
   border: 1px solid #322dc2;
   background-color: #322dc2;
-  color: var(--color);
+  color: var(--colorNotSoWhite);
   padding: 0.5rem 1rem;
   cursor: pointer;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
@@ -183,10 +280,75 @@ option {
 }
 
 #errorMsg {
-  background-color: #c32424;
+  background-color: var(--colorOsmoBearish);
 }
 
 .center {
   width: 700px;
   margin: auto;
+}
+
+/* FA icon modifications */
+.svg-inline--fa.fa-rectangle-list {
+  margin-right: 0.25rem;
+}
+.svg-inline--fa.fa-lock {
+  margin-right: 0.25rem;
+  color: rgba(245, 199, 10, 1)
+}
+.svg-inline--fa.fa-right-from-bracket {
+  margin-right: 0.25rem;
+  color: var(--colorOsmoBullish);
+  transform: rotate(0.5turn);
+}
+.svg-inline--fa.fa-atom {
+  position: relative;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  animation-name: spinner;
+  animation-duration: 3.0s;
+  animation-iteration-count: infinite;
+}
+.svg-inline--fa.fa-heart {
+  background-color: #e658cf;
+  padding: 0.2rem;
+  margin: 0.1rem;
+  font-size: smaller;
+  border-radius: 25%;
+  align-content: center;
+}
+.svg-inline--fa.fa-sparkles {
+  color: yellow;
+}
+.svg-inline--fa.fa-starship {
+  font-size: 2.0rem;
+  position: relative;
+  top: 6px;
+}
+.svg-inline--fa.fa-house,
+.svg-inline--fa.fa-retweet,
+.svg-inline--fa.fa-scale-balanced,
+.svg-inline--fa.fa-book-open-cover {
+  color: var(--colorNotSoWhite);
+  margin-right: 0.25rem;
+}
+.fa-osmo {
+  font-size: 4.0rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  position: relative;
+  top: 0.4rem;
+}
+
+/* Footer */
+.footer > a > img {
+  transition-duration: 0.50s;
+  transition-timing-function: ease-in-out;
+  filter: drop-shadow(0px 0px 2px var(--colorOsmoIon));
+}
+
+.footer > a:hover > img {
+  transition-duration: 0.50s;
+  transition-timing-function: ease-in-out;
+  filter: drop-shadow(0px 0px 10px var(--colorOsmoAmmelia));
 }

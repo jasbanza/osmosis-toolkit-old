@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Osmosis Toolkit by @jasbanza</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css" 
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- vue.js stuff for later -->
+    <!-- <script src="https://unpkg.com/vue@next" defer></script> -->
+    <!-- <script src="app.js" defer></script> -->
+    <script src="bond.bundle.js"></script>
+    <!-- index.js bundled with browserify -->
+  </head>
+  <body>
+    <div id="mask" class="hidden">
+      <div>loading...</div>
+    </div>
+    <div class="center">
+      <div class="container card" id="title">
+        <img
+          class="osmosis"
+          src="images/osmosis-logo-main.svg"
+          alt="OSMOSIS"
+        /><img class="toolkit" src="images/toolkit.png" alt="Toolkit" />
+        <div class="subtitle">
+          Pool information, bonding & dust removal. Ledger supported
+        </div>
+      </div>
+      <div class="container card">
+        <h3 id="wallet-status">WALLET NOT CONNECTED</h3>
+        <button onclick="module.btnConnectKeplr_onClick()">
+          <img src="./images/keplr_square.webp" />
+          <div id="btnConnectKeplr_text">Connect</div>
+        </button>
+      </div>
+
+      <div class="container card hidden" id="errorMsg"></div>
+
+      <div class="container card hidden" id="lastTxHash">
+        Last Transaction:
+        <a href="" target="_blank"></a>
+      </div>
+      <footer>
+        <div class="container card">
+          Made with 💟 by
+          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a>.<br/>
+          UI design made with ✨ by <a href="https://twitter.com/OzMagick" target="_blank">🧙 OzMage 🦉</a>.<br/>
+          APR data by 
+          <a href="https://www.dexmos.app/" target="_blank"><img alt="Dexmos" src="images/dexmosWhite.png" style="width: 125px; position: relative; top: 12px;"/></a>
+          <br /><br />
+          If this helps you,
+          <a
+            href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
+            target="_blank"
+            >you will love this</a
+          >
+          ⭐
+          <a target="_blank" href="https://app.starname.me/profile/jason"
+            >consider donating!</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
