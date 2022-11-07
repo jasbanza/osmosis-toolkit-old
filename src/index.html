@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Osmosis Toolkit by @jasbanza</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter&family=Poppins"
-    rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- vue.js stuff for later -->
-    <!-- <script src="https://unpkg.com/vue@next" defer></script> -->
-    <!-- <script src="app.js" defer></script> -->
-    <script src="bond.bundle.js"></script>
-    <script src="https://kit.fontawesome.com/49bf19f9cd.js" crossorigin="anonymous"></script>
-    <!-- index.js bundled with browserify -->
-  </head>
-  <body>
-    <div id="mask" class="hidden">
-      <div>
-        <i class="fa-solid fa-atom"></i><br/><span>Loading...</span></div>
-    </div>
-    <div class="center">
-      <div class="container card" id="heading">
-        <i class="fak fa-osmo"></i><span class="title">Osmosis Toolkit | </span><span class="title" id="pageTitle">Home</span>
-        <div class="subtitle">
-          a simple, lightweight client for everyday interactions with the osmosis blockchain.<br/>
-          <button class="keplr" onclick="module.btnConnectKeplr_onClick()">
-            <img src="./images/keplr_square.webp" />
-            <div id="btnConnectKeplr_text">Connect</div>
-          </button>
-        </div>
-        <span><B>Address:</B> </span><span id="wallet-status">WALLET NOT CONNECTED</span>
-      </div>
-      <div class="">
-        <ul class="nav">
-          <button class="nav"><a href="/"><li><i class="fa-sharp fa-solid fa-house"></i>Home</li></a></button>
-          <button class="nav"><a href="swap.html"><li><i class="fa-sharp fa-solid fa-retweet"></i>Swap</li></a></button>
-          <button class="nav"><a href="pool.html"><li><i class="fa-sharp fa-solid fa-scale-balanced"></i>Pool</li></a></button>
-          <button disabled class="nav"><i class="fa-sharp fa-solid fa-book-open-cover"></i><li>Docs</li></button>
-        </ul>
-      </div>
 
-      <!-- GAMM FORM -->
-      <div class="container card">
-        
-      </div>
-      <footer>
-        <div class="container card">
-          <div class="footer">
-          Made with <i class="fa-sharp fa-solid fa-heart"></i> by
-          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a><br/>
-          UI design made with <i class="fa-duotone fa-sparkles"></i> by <a href="https://twitter.com/OzMagick" target="_blank">🧙 OzMage 🦉</a><br/>
-          APR data by 
-          <a href="https://www.dexmos.app/" target="_blank"><img alt="Dexmos" src="images/dexmosWhite.png" style="width: 125px; position: relative; top: 12px;"/></a><br/><br/>
-          Hosting and Dedicated RPC endpoints by <a href="https://interbloc.org/" target="_blank"><img alt="Interbloc" src="images/interblocHorizontalWhite.png" style="width: 100px; position: relative; top: 5px;"/></a>
-          <br /><br />
-          Need help or support?<br/><a href="https://support.osmosis.zone/" target="_blank"><img alt="Interbloc" src="images/oslBanner_new.svg" style="width: 250px; margin: 0.5rem;"/></a><br />
-          If this helps you,
-          <a
-            href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
-            target="_blank"
-            >you will love this</a
-          >
-          <i class="fa-duotone fa-starship"></i>
-          <a target="_blank" href="https://app.starname.me/profile/jason"
-            >consider donating!</a
-          >
-        </div>
-        </div>
-      </footer>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Osmosis Toolkit by @jasbanza</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter&family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- vue.js stuff -->
+  <!-- <script src="https://unpkg.com/vue@next/dist/vue.global.js" defer></script> -->
+  <!-- <script src="https://unpkg.com/vue@next/dist/vue.global.prod.js" defer></script> -->
+  <script src="bond.bundle.js"></script>
+  <script src="toolkit.bundle.js"></script>
+  <script src="https://kit.fontawesome.com/49bf19f9cd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="mask" class="hidden">
+    <div>
+      <i class="fa-solid fa-atom"></i><br /><span>Loading...</span>
     </div>
-  </body>
+  </div>
+  <div class="center">
+    <div class="container card" id="heading">
+      <i class="fak fa-osmo"></i><span class="title">Osmosis Toolkit | </span><span class="title"
+        id="pageTitle">Home</span>
+      <div class="subtitle">
+        a simple, lightweight client for everyday interactions with the osmosis blockchain.<br />
+        <button class="keplr" onclick="module.btnConnectKeplr_onClick()">
+          <img src="./images/keplr_square.webp" />
+          <div id="btnConnectKeplr_text">Connect</div>
+        </button>
+      </div>
+      <span><B>Address:</B> </span><span id="wallet-status">WALLET NOT CONNECTED</span>
+    </div>
+    <div class="">
+      <ul class="nav">
+        <button class="nav"><a href="/">
+            <li><i class="fa-sharp fa-solid fa-house"></i>Home</li>
+          </a></button>
+        <button class="nav"><a href="swap.html">
+            <li><i class="fa-sharp fa-solid fa-retweet"></i>Swap</li>
+          </a></button>
+        <button class="nav"><a href="pool.html">
+            <li><i class="fa-sharp fa-solid fa-scale-balanced"></i>Pool</li>
+          </a></button>
+        <button disabled class="nav"><i class="fa-sharp fa-solid fa-book-open-cover"></i>
+          <li>Docs</li>
+        </button>
+      </ul>
+    </div>
+
+    <!-- GAMM FORM -->
+    <div class="container card">
+
+    </div>
+    <footer>
+      <div class="container card">
+        <div class="footer">
+          Made with <i class="fa-sharp fa-solid fa-heart"></i> by
+          <a href="https://linktr.ee/jasbanza" target="_blank">@jasbanza</a><br />
+          UI design made with <i class="fa-duotone fa-sparkles"></i> by <a href="https://twitter.com/OzMagick"
+            target="_blank">🧙 OzMage 🦉</a><br />
+          APR data by
+          <a href="https://www.dexmos.app/" target="_blank"><img alt="Dexmos" src="images/dexmosWhite.png"
+              style="width: 125px; position: relative; top: 12px;" /></a><br /><br />
+          Hosting and Dedicated RPC endpoints by <a href="https://interbloc.org/" target="_blank"><img alt="Interbloc"
+              src="images/interblocHorizontalWhite.png" style="width: 100px; position: relative; top: 5px;" /></a>
+          <br /><br />
+          Need help or support?<br /><a href="https://support.osmosis.zone/" target="_blank"><img alt="Interbloc"
+              src="images/oslBanner_new.svg" style="width: 250px; margin: 0.5rem;" /></a><br />
+          If this helps you,
+          <a href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
+            target="_blank">you will love this</a>
+          <i class="fa-duotone fa-starship"></i>
+          <a target="_blank" href="https://app.starname.me/profile/jason">consider donating!</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
 </html>
