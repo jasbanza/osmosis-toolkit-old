@@ -9,20 +9,20 @@
           Fueled by Coffee, <a target="_blank" href="https://app.starname.me/profile/jason">buy one for me?</a>
           <font-awesome-icon icon="fa-duotone fa-cup-togo" /></span>
           <span>
-          <a href="https://www.dexmos.app/" target="_blank"><img aria-label="Dexmos" alt="Dexmos" src="images/dexmosWhite.png" />
+          <a href="https://www.dexmos.app/" target="_blank"><img aria-label="Dexmos" alt="Dexmos" src="/images/dexmosWhite.png" />
           </a></span>
               <span><font-awesome-icon icon="fa-duotone fa-browsers" /> UI Designer<br />
               <a href="https://twitter.com/OzMagick"
             target="_blank"><img alt="Zenith"
-              src="images/ZenithText.svg" /></a></span>
+              src="/images/ZenithText.svg" /></a></span>
             <span><font-awesome-icon icon="fa-duotone fa-server" /><br />Hosting & Dedicated RPC Nodes<br />
               <a href="https://interbloc.org/" target="_blank"><img alt="Interbloc"
-              src="images/interblocHorizontalWhite.png" /></a></span>
+              src="/images/interblocHorizontalWhite.png" /></a></span>
               <span><h4>More from @jasbanza:</h4> 
           <a href="https://chrome.google.com/webstore/detail/osmosis-companion/gdfaagnfjplgkajlggjfnimdogmgcjob"
             target="_blank">Osmosis Companion Chrome Extension</a></span>
               <span><img src="/images/svgHelpy_icon.svg" /> Help/Support<br /><a href="https://support.osmosis.zone/" target="_blank"><img alt="Osmosis Support Lab"
-              src="images/oslBanner_new.svg" /></a></span>
+              src="/images/oslBanner_new.svg" /></a></span>
         </div>
       </div>
     </footer>

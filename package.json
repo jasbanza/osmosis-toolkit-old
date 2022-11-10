@@ -39,7 +39,9 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "big.js": "^6.2.1",
     "osmojs": "^0.35.0",
-    "vue": "^3.2.41"
+    "vite-plugin-vuetify": "^1.0.0",
+    "vue": "^3.2.41",
+    "vuetify": "^3.0.0"
   },
   "devDependencies": {
     "@keplr-wallet/types": "^0.11.15",

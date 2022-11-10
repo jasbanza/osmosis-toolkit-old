@@ -1,28 +1,67 @@
 <template>
   <img src="/images/osmoToolKit_logo_banner-01.svg" />
-    <div class="center container card" id="heading">
-      <span class="title"
-        id="pageTitle">Home</span>
-        <ul class="nav">
-        <button class="nav"><a href="/">
-            <li><font-awesome-icon icon="fa-duotone fa-house" /> Home</li>
-          </a></button>
-        <button class="nav"><a href="swap.html">
-            <li><font-awesome-icon icon="fa-duotone fa-arrow-right-arrow-left" /> Swap</li>
-          </a></button>
-        <button class="nav"><a href="pool.html">
-            <li><font-awesome-icon icon="fa-duotone fa-scale-balanced" /> Pool</li>
-          </a></button>
-        <button disabled class="nav"><font-awesome-icon icon="fa-duotone fa-books" /> 
-          <li>Wiki</li>
-        </button>
-      </ul>
-        <button class="keplr" onclick="module.btnConnectKeplr_onClick()">
-          <img src="/images/keplr_square.webp" />
-          <div id="btnConnectKeplr_text">Connect</div>
-        </button><br />
-      <span><B>Address:</B></span> <span id="wallet-status">osmo1vjsxu6sew3z5wphzeu59nq0e78s0974dm5tx6x</span>
-    </div>
+  <div class="center container card" id="heading">
+    <span class="title" id="pageTitle">Home</span>
+    <ul class="nav">
+      <button class="nav">
+        <a href="/">
+          <li><font-awesome-icon icon="fa-duotone fa-house" /> Home</li>
+        </a>
+      </button>
+      <button class="nav">
+        <a href="swap.html">
+          <li>
+            <font-awesome-icon icon="fa-duotone fa-arrow-right-arrow-left" />
+            Swap
+          </li>
+        </a>
+      </button>
+      <button class="nav">
+        <a href="pool.html">
+          <li>
+            <font-awesome-icon icon="fa-duotone fa-scale-balanced" /> Pool
+          </li>
+        </a>
+      </button>
+      <button disabled class="nav">
+        <font-awesome-icon icon="fa-duotone fa-books" />
+        <li>Wiki</li>
+      </button>
+    </ul>
+    <button class="keplr" onclick="module.btnConnectKeplr_onClick()">
+      <img src="/images/keplr_square.webp" />
+      <div id="btnConnectKeplr_text">Connect</div></button
+    ><br />
+    <v-btn>Connect</v-btn>
+    <v-table density="compact" fixed-header theme="dark" height="200">
+      <thead>
+      <tr>
+        <th>Col 1</th>
+        <th>Col 2</th>
+        <th>Col 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>test</td>
+        <td>test</td>
+        <td>test</td>
+      </tr>
+      <tr>
+        <td>test</td>
+        <td>test</td>
+        <td>test</td>
+      </tr>
+      <tr>
+        <td>test</td>
+        <td>test</td>
+        <td>test</td>
+      </tr>
+      </tbody>
+    </v-table>
+    <span><B>Address:</B></span>
+    <span id="wallet-status">osmo1vjsxu6sew3z5wphzeu59nq0e78s0974dm5tx6x</span>
+  </div>
 </template>
 
 <style scoped>
@@ -42,9 +81,9 @@ img {
 .fa-arrow-right-arrow-left {
   --fa-primary-color: var(--colorOsmoBullish);
   --fa-secondary-color: var(--colorOsmoBearish);
-  --fa-secondary-opacity: 1.0;
+  --fa-secondary-opacity: 1;
 }
-.fa-house{
+.fa-house {
   color: var(--colorOsmoAmmelia);
 }
 /* UL Navigation Related*/
@@ -60,15 +99,15 @@ button.nav {
   display: inline-flex;
   justify-content: center;
   font-size: 1.75rem;
-  padding: 1.0rem;
+  padding: 1rem;
   transition-property: all;
-  transition-duration: 0.30s;
+  transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
 }
 button.nav:hover {
   transform: rotate(-0.03turn);
   transition-property: all;
-  transition-duration: 0.30s;
+  transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
 }
 button.nav:disabled {
@@ -78,7 +117,7 @@ button.nav:disabled {
   cursor: not-allowed;
 }
 button.nav:disabled:hover {
-  border-radius: 1.0rem;
+  border-radius: 1rem;
 }
 button.nav > a {
   color: var(--colorNotSoWhite);
