@@ -1,18 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter&family=Poppins');
+
 /* Root Variable Guide */
 :root {
   /* Default Colors as HEX Code */
   --colorNotSoWhite: #f0f0f0;
   --colorJasonBlu: #3c356d;
-  --colorOsmoWosmo: #462DAF;
-  --colorOsmoIon: #2994D0;
-  --colorOsmoAmmelia: #CA2EBD;
-  --colorOsmoBullish: #29D0B2;
-  --colorOsmoBearish: #C6451C;
-  --colorOsmoVerse: #140F34;
+  --colorArcBurg: #211321;
+  --colorOsmoWosmo: #462daf;
+  --colorOsmoIon: #2994d0;
+  --colorOsmoAmmelia: #ca2ebd;
+  --colorOsmoBullish: #29d0b2;
+  --colorOsmoBearish: #c6451c;
+  --colorOsmoVerse: #140f34;
   /* Default Font-Families */
-  --fontNumbers: 'IBM Plex Mono', monospace;
-  --fontText: 'Inter', sans-serif;
-  --fontHeadings: 'Poppins', sans-serif;
+  --fontNumbers: "IBM Plex Mono", monospace;
+  --fontText: "Inter", sans-serif;
+  --fontHeadings: "Poppins", sans-serif;
+}
+@keyframes shake {
+  0%   {transform: rotate(0.0turn)}
+  25% {transform: rotate(0.15turn)}
+  50% {transform: rotate(-0.10turn)}
+  75% {transform: rotate(0.05turn)}
+  100% {transform: rotate(0.0turn)}
 }
 
 /* Spinner Animation */
@@ -43,24 +53,17 @@
   display: none;
 }
 
-/* Setting a Default Font, size, weight, and color
-    TODO: Make reactive to screen size */
-html {
-  font-family: var(--fontText);
-  font-weight: 400;
-  font-size: 1.0rem;
-  color: var(--colorNotSoWhite);
-}
-
 /* Setting the default bg color */
 body {
-  margin: 0;
-  background-color: var(--colorOsmoVerse);
+  display: flex;
+  background-color: var(--colorArcBurg);
 }
 
 /* Basic Containers for Elements */
 .container {
-  background-color: var(--colorJasonBlu);
+  background-color: var(--colorOsmoVerse);
+  font-size: 1.25em;
+  color: var(--colorNotSoWhite);
   text-align: center;
   padding: 0.85rem;
   margin: 1.0rem;
@@ -90,16 +93,6 @@ button {
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
 }
-button.keplr {
-  display: inline-flex;
-  max-width: 200px;
-  align-items: center;
-  font-variant-caps: normal;
-}
-button.keplr > img {
-  width: 25px;
-  margin-right: 0.25rem;
-}
 button:focus {
   outline: none;
 }
@@ -119,14 +112,9 @@ button.active {
 .subtitle {
   font-style: italic;
   font-variant-caps: unicase;
-  font-family: var(--fontHeadings);
+  font-family: var(--fontNumbers);
   color: var(--colorOsmoAmmelia);
   margin-top: 1.0rem;
-  line-height: 1.5rem;
-}
-.title {
-  font-family: var(--fontHeadings);
-  font-size: 1.85rem;
 }
 #pageTitle {
   font-weight: 900;
@@ -198,46 +186,6 @@ input {
   width: 250px;
 }
 
-/* UL Navigation Related*/
-ul.nav {
-  list-style-type: none;
-  display: grid;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  left: -0.5rem;
-  grid-template-columns: auto auto auto auto;
-  justify-content: center;
-}
-button.nav {
-  display: inline;
-  font-size: 0.95rem;
-  margin: -1.5rem 1.5rem;
-  width: 120px;
-  transition-property: all;
-  transition-duration: 0.30s;
-  transition-timing-function: ease-in-out;
-}
-button.nav:hover {
-  transform: rotate(-0.03turn);
-  transition-property: all;
-  transition-duration: 0.30s;
-  transition-timing-function: ease-in-out;
-}
-button.nav:disabled {
-  background-color: #ccc;
-  border-color: #ccc;
-  color: #3f3f3f;
-  cursor: not-allowed;
-}
-button.nav:disabled:hover {
-  border-radius: 1.0rem;
-}
-button.nav > a {
-  color: var(--colorNotSoWhite);
-  text-decoration-line: none;
-}
-
 select {
   padding: 8px;
   font-size: 14pt;
@@ -281,74 +229,4 @@ option {
 
 #errorMsg {
   background-color: var(--colorOsmoBearish);
-}
-
-.center {
-  width: 700px;
-  margin: auto;
-}
-
-/* FA icon modifications */
-.svg-inline--fa.fa-rectangle-list {
-  margin-right: 0.25rem;
-}
-.svg-inline--fa.fa-lock {
-  margin-right: 0.25rem;
-  color: rgba(245, 199, 10, 1)
-}
-.svg-inline--fa.fa-right-from-bracket {
-  margin-right: 0.25rem;
-  color: var(--colorOsmoBullish);
-  transform: rotate(0.5turn);
-}
-.svg-inline--fa.fa-atom {
-  position: relative;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  animation-name: spinner;
-  animation-duration: 3.0s;
-  animation-iteration-count: infinite;
-}
-.svg-inline--fa.fa-heart {
-  background-color: #e658cf;
-  padding: 0.2rem;
-  margin: 0.1rem;
-  font-size: smaller;
-  border-radius: 25%;
-  align-content: center;
-}
-.svg-inline--fa.fa-sparkles {
-  color: yellow;
-}
-.svg-inline--fa.fa-starship {
-  font-size: 2.0rem;
-  position: relative;
-  top: 6px;
-}
-.svg-inline--fa.fa-house,
-.svg-inline--fa.fa-retweet,
-.svg-inline--fa.fa-scale-balanced,
-.svg-inline--fa.fa-book-open-cover {
-  color: var(--colorNotSoWhite);
-  margin-right: 0.25rem;
-}
-.fa-osmo {
-  font-size: 4.0rem;
-  margin-right: 0.5rem;
-  margin-top: 0.5rem;
-  position: relative;
-  top: 0.4rem;
-}
-
-/* Footer */
-.footer > a > img {
-  transition-duration: 0.50s;
-  transition-timing-function: ease-in-out;
-  filter: drop-shadow(0px 0px 2px var(--colorOsmoIon));
-}
-
-.footer > a:hover > img {
-  transition-duration: 0.50s;
-  transition-timing-function: ease-in-out;
-  filter: drop-shadow(0px 0px 10px var(--colorOsmoAmmelia));
 }
